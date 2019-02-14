@@ -37,7 +37,7 @@ def make_x(n):
     x[:,:,1] *= 1j
     x = np.sum(x, axis=2)
 
-    x /= np.linalg.norm(x) # remove this line to allow x to not have unit norm
+#    x /= np.linalg.norm(x) # uncomment this line to have unit norm x
     
     return x
 
@@ -88,11 +88,11 @@ def grad_descent(n, m, ensemble, y, x_t, x_true):
         grad = loss_grad(x_t, ensemble, y)
         x_t1 = x_t.copy()
         x_t = x_t - lr * grad
-        diff = c_distance(x_t, x_t1)
+        diff = c_distance(x_t, x_t1) / norm_estimate
         iterations +=1
 
     # calculate error and print information
-    error = c_distance(x_t, x_true)
+    error = c_distance(x_t, x_true)/np.linalg.norm(x_true)
     print ('Final error: ', error)
     print ('Iterations: ' + str(iterations) + ' - lr: ' + str(lr))
     
@@ -115,7 +115,7 @@ def solve(n, m, q, trials):
         
         # get spectral initalization and calculate distance from optimum
         x_0 = get_initialisation(ensemble, y)
-        print ('Initial distance: ', c_distance(x_0, x_true))
+        print ('Initial distance: ', c_distance(x_0, x_true)/np.linalg.norm(x_true))
         
         # run gradient descent
         error, iterations_taken, recovered = grad_descent(n, m, ensemble, y, x_0, x_true)
