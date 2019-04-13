@@ -142,7 +142,7 @@ if __name__ == "__main__":
     # the number of measurements
     m = 400
     
-    # rotationally invariant exponential family parameter. q=0 gives the
+    # measurement matrices distribution family parameter. q=0 gives the
     # complex Gaussian measurement model
     q = 0
 

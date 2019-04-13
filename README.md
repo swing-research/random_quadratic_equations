@@ -1,2 +1,2 @@
-# random_quadratic_equations
-Solving Systems of Complex Random Quadratic Equations
+# Solving Complex Quadratic Systems with Full-Rank Random Matrices
+For details, please see: <https://arxiv.org/abs/1902.05612>
